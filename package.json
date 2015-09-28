@@ -1,5 +1,5 @@
 {
-  "name": "spa",
+  "name": "feed-reader",
   "main": "app.js",
   "dependencies": {
     "body-parser": "^1.14.0",
