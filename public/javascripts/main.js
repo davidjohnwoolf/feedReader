@@ -2,6 +2,6 @@
 
 $(function() {
 
-  var feedReader = new FeedReader(models);
+  var feedReader = new FeedReader(); // pass in models
 
 });

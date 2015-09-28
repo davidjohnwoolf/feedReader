@@ -1,6 +1,6 @@
 'use strict';
 
-(function() {
+var FeedReader = (function() {
 
   // views
 
@@ -8,5 +8,5 @@
     // initial state
   }
 
-  return feedReader;
+  return FeedReader;
 })();
