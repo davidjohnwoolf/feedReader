@@ -3,7 +3,7 @@
 var FeedReader = {
   Models: FeedReaderModels,
   Views: FeedReaderViews,
-  Routes: FeedReaderRouter
+  Router: FeedReaderRouter
 };
 
 // Initialize App
