@@ -6,20 +6,28 @@ var FeedReaderRouter = (function() {
     routes: {
       '': 'index',
       'new': 'new',
-      ':id': 'show',
-      ':id/edit': 'edit'
+      ':name': 'show',
+      ':name/edit': 'edit'
     },
     index: function() {
-      // render feeds collection view
+      var feedsView = new FeedReader.Views.Feeds({ collection: FeedReader.feeds });
+      $('#app').html(feedsView.render().$el);
     },
     new: function() {
-      // render new feed form
+      var newFeedView = new FeedReader.Views.NewFeed();
+      $('#app').html(newFeedView.render().$el);
     },
-    show: function() {
-      // render feed show page
+    show: function(name) {
+      var feed = FeedReader.feeds.findWhere({ name: name });
+      var feedView = new FeedReader.Views.Feed({ model: feed });
+      $('#app').html(feedView.render().$el);
     },
-    edit: function() {
-      // render feed edit page
+    edit: function(name) {
+      var feed = FeedReader.feeds.findWhere({ name: name });
+      var editFeedView = new FeedReader.Views.EditFeed();
+      $('#app').html(editFeedView.render().$el);
+      $('#edit-name').val(feed.get('name'));
+      $('#edit-source').val(feed.get('source'));
     }
   });
 
