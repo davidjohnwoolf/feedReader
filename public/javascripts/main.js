@@ -7,8 +7,11 @@ var FeedReader = {
 };
 
 // Initialize App
-$(function() {
+(function() {
+  $(function() {
 
-  // initialization
+      var router = new FeedReader.Router;
+      Backbone.history.start();
 
-});
+  });
+})();
