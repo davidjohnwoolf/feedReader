@@ -2,9 +2,26 @@
 
 var FeedReaderViews = (function() {
 
-  // views
+  var Feed = Backbone.View.extend({
+
+  });
+
+  var NewFeed = Backbone.View.extend({
+
+  });
+
+  var EditFeed = Backbone.View.extend({
+
+  });
+
+  var Feeds = Backbone.View.extend({
+
+  });
 
   return {
-    // views object
+    Feed: Feed,
+    NewFeed: NewFeed,
+    EditFeed: EditFeed,
+    Feeds: Feeds
   };
 })();

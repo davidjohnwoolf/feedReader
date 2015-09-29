@@ -2,9 +2,16 @@
 
 var FeedReaderModels = (function() {
 
-  // models
+  var Feed = Backbone.Model.extend({
+
+  });
+
+  var Feeds = Backbone.Collection.extend({
+    model: Feed
+  });
 
   return {
-    // models object
+    Feed: Feed,
+    Feeds: Feeds
   };
 })();

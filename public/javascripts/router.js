@@ -1,6 +1,6 @@
 'use strict';
 
-var FeedReaderRouter = (function() {
+var FeedReaderRoutes = (function() {
 
   // routes
 
