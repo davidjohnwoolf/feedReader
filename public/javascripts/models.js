@@ -6,5 +6,5 @@ var FeedReaderModels = (function() {
 
   return {
     // models object
-  }
+  };
 })();
