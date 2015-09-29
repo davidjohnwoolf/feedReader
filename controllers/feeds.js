@@ -16,21 +16,11 @@ router.use(methodOverride(function(req, res) {
   }
 }));
 
-// index
+// base page
 router.get('/', function(req, res) {
-  Feed.find(function(err, feeds) {
-    if (err) {
-      return res.send(err);
-    }
-
-    res.render('/feeds/index', { title: 'Feeds', feeds: feeds });
-  });
+  res.render('/index', { title: 'Feed Reader'})
 });
 
-// new
-router.get('/new', function(req, res) {
-  res.render('new', { title: 'New Feed' });
-});
 
 // create
 router.post('/new', function(req, res) {
@@ -45,28 +35,6 @@ router.post('/new', function(req, res) {
     }
 
     res.redirect('/feeds');
-  });
-});
-
-// show
-router.get('/:id', function(req, res) {
-  Feed.findById(req.params.id, function(err, feed) {
-    if (err) {
-      return res.send(err);
-    }
-
-    res.render('/feeds/show', { title: feed.name, feed: feed });
-  });
-});
-
-// edit
-router.get('/:id/edit', function(req, res) {
-  Feed.findById(req.params.id, function(err, feed) {
-    if (err) {
-      return res.send(err);
-    }
-
-    res.render('edit', { title: 'Edit ' + feed.name, feed: feed });
   });
 });
 
