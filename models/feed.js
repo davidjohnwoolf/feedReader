@@ -5,3 +5,5 @@ var FeedSchema = new Schema({
   name: String,
   source: String
 });
+
+module.exports = mongoose.model('Feed', FeedSchema);
