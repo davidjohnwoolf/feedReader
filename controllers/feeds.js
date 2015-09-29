@@ -16,6 +16,11 @@ router.use(methodOverride(function(req, res) {
   }
 }));
 
+// base page
+router.get('/', function(req, res) {
+  res.render('/index', { title: 'Feed Reader'})
+});
+
 
 // create
 router.post('/new', function(req, res) {
