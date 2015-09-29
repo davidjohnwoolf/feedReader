@@ -14,3 +14,38 @@ router.use(methodOverride(function(req, res) {
     return method;
   }
 }));
+
+// index
+router.get('/', function(req, res) {
+
+});
+
+// new
+router.get('/new', function(req, res) {
+
+});
+
+// create
+router.post('/new', function(req, res) {
+
+});
+
+// show
+router.get('/:id', function(req, res) {
+
+});
+
+// edit
+router.get('/:id/edit', function(req, res) {
+
+});
+
+// update
+router.post('/:id/edit', function(req, res) {
+
+});
+
+// delete
+router.delete('/:id', function(req, res) {
+
+});
