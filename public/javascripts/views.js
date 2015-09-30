@@ -5,9 +5,10 @@ var FeedReaderViews = (function() {
   var Feed = Backbone.View.extend({
     className: 'feed',
     render: function() {
-      var name = '<h4>' + this.model.get('name') + '</h4>'
-      var source = '<p>' + this.model.get('source') + '</p>'
-      this.$el.html(name + source);
+      var name = '<h4><a href="#' + this.model.get('id') + '">' + this.model.get('name') + '</a></h4>';
+      var source = '<p>' + this.model.get('source') + '</p>';
+      var editLink = '<a href="#' + this.model.get('id') + '/edit">Edit</a>';
+      this.$el.html(name + source + editLink);
       return this;
     }
   });

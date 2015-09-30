@@ -12,10 +12,8 @@ var FeedReader = {
 
     FeedReader.feeds = new FeedReader.Models.Feeds();
 
-    Backbone.sync = function(method, model) {
-      var router = new FeedReader.Router();
-      Backbone.history.start();
-    };
+    var router = new FeedReader.Router();
+    Backbone.history.start();
 
   });
 })();
