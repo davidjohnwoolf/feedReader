@@ -6,8 +6,8 @@ var FeedReaderRouter = (function() {
     routes: {
       '': 'index',
       'new': 'new',
-      ':name': 'show',
-      ':name/edit': 'edit'
+      ':id': 'show',
+      ':id/edit': 'edit'
     },
     index: function() {
       var feedsView = new FeedReader.Views.Feeds({ collection: FeedReader.feeds });
@@ -17,13 +17,13 @@ var FeedReaderRouter = (function() {
       var newFeedView = new FeedReader.Views.NewFeed();
       $('#app').html(newFeedView.render().$el);
     },
-    show: function(name) {
-      var feed = FeedReader.feeds.findWhere({ name: name });
+    show: function(id) {
+      var feed = FeedReader.feeds.get(id);
       var feedView = new FeedReader.Views.Feed({ model: feed });
       $('#app').html(feedView.render().$el);
     },
-    edit: function(name) {
-      var feed = FeedReader.feeds.findWhere({ name: name });
+    edit: function(id) {
+      var feed = FeedReader.feeds.get(id);
       var editFeedView = new FeedReader.Views.EditFeed();
       $('#app').html(editFeedView.render().$el);
       $('#edit-name').val(feed.get('name'));

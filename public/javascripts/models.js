@@ -10,7 +10,7 @@ var FeedReaderModels = (function() {
     model: Feed,
     url: '/feeds',
     initialize: function() {
-      this.fetch();
+      this.fetch({ async: false });
     }
   });
 

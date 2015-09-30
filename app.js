@@ -26,21 +26,15 @@ app.get('/feeds', function(req, res) {
 });
 
 app.post('/new', function(req, res) {
-  console.log('Created');
-  Feed.count({}, function(err, count) {
+  var feed = new Feed({
+    name: req.body.name,
+    source: req.body.source,
+  });
+
+  feed.save(function(err) {
     if (err) return res.send(err);
 
-    var feed = new Feed({
-      name: req.body.name,
-      source: req.body.source,
-      id: count
-    });
-
-    feed.save(function(err) {
-      if (err) return res.send(err);
-
-      res.redirect('/');
-    });
+    res.redirect('/');
   });
 });
 

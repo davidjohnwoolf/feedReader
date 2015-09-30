@@ -43,7 +43,11 @@ var FeedReaderViews = (function() {
       return this;
     },
     initialize: function() {
-      this.listenTo(this.collection, 'add', this.render);
+      this.listenTo(this.collection, 'add', this.addView);
+    },
+    addView: function(feed) {
+      var feedView = new FeedReader.Views.Feed({ model: feed });
+      this.$el.append(feedView.render().$el);
     }
   });
 
