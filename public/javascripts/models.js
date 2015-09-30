@@ -3,7 +3,7 @@
 var FeedReaderModels = (function() {
 
   var Feed = Backbone.Model.extend({
-
+    idAttribute: '_id'
   });
 
   var Feeds = Backbone.Collection.extend({

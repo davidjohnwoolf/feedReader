@@ -24,7 +24,7 @@ var FeedReaderRouter = (function() {
     },
     edit: function(id) {
       var feed = FeedReader.feeds.get(id);
-      var editFeedView = new FeedReader.Views.EditFeed();
+      var editFeedView = new FeedReader.Views.EditFeed({ model: feed });
       $('#app').html(editFeedView.render().$el);
       $('#edit-name').val(feed.get('name'));
       $('#edit-source').val(feed.get('source'));
