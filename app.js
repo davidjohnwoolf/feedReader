@@ -21,7 +21,7 @@ app.get('/feeds', function(req, res) {
   Feed.find(function(err, feeds) {
     if (err) return res.send(err);
 
-    res.send(JSON.stringify(feeds));
+    res.json(feeds);
   });
 });
 
