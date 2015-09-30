@@ -3,18 +3,46 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var Feed = require('./models/feed')
 
 var app = express();
 
 app.disable('x-powered-by');
 app.set('port', process.env.PORT || 1337);
 
-mongoose.connect('mongodb://localhost/spa');
+mongoose.connect('mongodb://localhost/feedReader');
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(express.static(__dirname + '/public'));
+
+app.get('/feeds', function(req, res) {
+  Feed.find(function(err, feeds) {
+    if (err) return res.send(err);
+
+    res.send(JSON.stringify(feeds));
+  });
+});
+
+app.post('/new', function(req, res) {
+  console.log('Created');
+  Feed.count({}, function(err, count) {
+    if (err) return res.send(err);
+
+    var feed = new Feed({
+      name: req.body.name,
+      source: req.body.source,
+      id: count
+    });
+
+    feed.save(function(err) {
+      if (err) return res.send(err);
+
+      res.redirect('/');
+    });
+  });
+});
 
 // error handling
 

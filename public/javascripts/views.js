@@ -34,12 +34,16 @@ var FeedReaderViews = (function() {
   var Feeds = Backbone.View.extend({
     id: 'feeds',
     render: function() {
-      var header = '<h2>Feeds</h2>'
+      var header = '<h2>Feeds</h2>';
+      this.$el.html(header);
       this.collection.each(function(feed) {
         var feedView = new FeedReader.Views.Feed({ model: feed });
         this.$el.append(feedView.render().$el);
       }, this)
       return this;
+    },
+    initialize: function() {
+      this.listenTo(this.collection, 'add', this.render);
     }
   });
 

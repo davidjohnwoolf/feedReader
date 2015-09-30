@@ -10,11 +10,7 @@ var FeedReader = {
 (function() {
   $(function() {
 
-    FeedReader.feeds = new FeedReader.Models.Feeds([
-      { name: 'Web Design', source: 'webdesign.com/rss' },
-      { name: 'Left News', source: 'leftnews.com/rss' },
-      { name: 'Linux', source: 'linux.com/rss' }
-    ]);
+    FeedReader.feeds = new FeedReader.Models.Feeds();
 
     var router = new FeedReader.Router;
     Backbone.history.start();

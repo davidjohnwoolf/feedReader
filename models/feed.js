@@ -5,7 +5,8 @@ var Schema = mongoose.Schema;
 
 var FeedSchema = new Schema({
   name: String,
-  source: String
+  source: String,
+  id: Number
 });
 
 module.exports = mongoose.model('Feed', FeedSchema);
