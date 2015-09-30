@@ -62,6 +62,14 @@ app.put('/:id/edit', function(req, res) {
   });
 });
 
+app.delete('/:id', function(req, res) {
+  Feed.remove({ _id: req.params.id }, function(err, feed) {
+    if (err) return res.send(err);
+
+    res.redirect('/');
+  });
+});
+
 // error handling
 
 // catch 404 and forward to error handler

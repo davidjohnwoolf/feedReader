@@ -8,7 +8,8 @@ var FeedReaderViews = (function() {
       var name = '<h4><a href="#' + this.model.get('_id') + '">' + this.model.get('name') + '</a></h4>';
       var source = '<p>' + this.model.get('source') + '</p>';
       var editLink = '<a href="#' + this.model.get('_id') + '/edit">Edit</a>';
-      this.$el.html(name + source + editLink);
+      var deleteButton = '<form method="post" action="/' + this.model.get('_id') + '"><input type="hidden" name="_method" value="DELETE"><input type="submit" value="Delete"></form>';
+      this.$el.html(name + source + editLink + deleteButton);
       return this;
     }
   });
