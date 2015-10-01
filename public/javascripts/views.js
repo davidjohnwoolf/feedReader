@@ -40,7 +40,7 @@ var FeedReaderViews = (function() {
       this.collection.each(function(feed) {
         var feedView = new FeedReader.Views.Feed({ model: feed });
         this.$el.append(feedView.render().$el);
-      }, this)
+      }, this);
       return this;
     },
     initialize: function() {
