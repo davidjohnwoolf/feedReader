@@ -60,13 +60,11 @@ app.put('/feeds/:id', function(req, res) {
   });
 });
 
-// app.delete('/:id', function(req, res) {
-//   Feed.remove({ _id: req.params.id }, function(err, feed) {
-//     if (err) return res.send(err);
-//
-//     res.redirect('/');
-//   });
-// });
+app.delete('/feeds/:id', function(req, res) {
+  Feed.remove({ _id: req.params.id }, function(err, feed) {
+    if (err) return res.send(err);
+  });
+});
 
 // error handling
 

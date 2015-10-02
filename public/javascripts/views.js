@@ -8,9 +8,23 @@ var FeedReaderViews = (function() {
       var name = '<h4><a href="#' + this.model.get('_id') + '">' + this.model.get('name') + '</a></h4>';
       var source = '<p>' + this.model.get('source') + '</p>';
       var editLink = '<a href="#' + this.model.get('_id') + '/edit">Edit</a>';
-      var deleteButton = '<form method="post" action="/' + this.model.get('_id') + '"><input type="hidden" name="_method" value="DELETE"><input type="submit" value="Delete"></form>';
+      var deleteButton = '<button id="delete-feed">Delete</button>';
       this.$el.html(name + source + editLink + deleteButton);
       return this;
+    },
+    initialize: function() {
+      this.listenTo(this.model, 'destroy', this.removeView);
+    },
+    events: {
+      'click #delete-feed': 'deleteFeed'
+    },
+    removeView: function() {
+      this.remove();
+      FeedReader.router.navigate('', { trigger: true });
+
+    },
+    deleteFeed: function() {
+      this.model.destroy();
     }
   });
 
@@ -47,7 +61,6 @@ var FeedReaderViews = (function() {
     updateFeed: function() {
       this.model.set('name', $('#edit-feed-name').val());
       this.model.set('source', $('#edit-feed-source').val());
-      console.log(this.model);
       this.model.save();
       FeedReader.router.navigate('', { trigger: true });
     }
@@ -65,7 +78,9 @@ var FeedReaderViews = (function() {
       return this;
     },
     initialize: function() {
-      this.listenTo(this.collection, 'add', this.addView);
+      this.listenTo(this.collection, 'add', this.render);
+      this.listenTo(this.collection, 'destroy', this.render);
+      this.listenTo(this.collection, 'route', this.collection.initialize());
     },
     addView: function(feed) {
       var feedView = new FeedReader.Views.Feed({ model: feed });
