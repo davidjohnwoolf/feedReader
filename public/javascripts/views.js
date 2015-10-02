@@ -78,8 +78,7 @@ var FeedReaderViews = (function() {
       return this;
     },
     initialize: function() {
-      this.listenTo(this.collection, 'update', this.render);
-      this.listenTo(this.collection, 'change', this.collection.initialize());
+      this.listenTo(this.collection, 'update', this.collection.initialize());
     }
   });
 
