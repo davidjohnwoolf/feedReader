@@ -12,7 +12,7 @@ var FeedReader = {
 
     FeedReader.feeds = new FeedReader.Models.Feeds();
 
-    var router = new FeedReader.Router();
+    FeedReader.router = new FeedReader.Router();
     Backbone.history.start();
 
   });
