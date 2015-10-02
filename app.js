@@ -1,6 +1,7 @@
 'use strict';
 
 var express = require('express');
+var logger = require('morgan');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var methodOverride = require('method-override');
@@ -13,6 +14,7 @@ app.set('port', process.env.PORT || 1337);
 
 mongoose.connect('mongodb://localhost/feedReader');
 
+app.use(logger('dev'));
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
