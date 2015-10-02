@@ -17,9 +17,18 @@ var FeedReaderViews = (function() {
   var NewFeed = Backbone.View.extend({
     id: 'new-feed',
     render: function() {
-      var form = '<form method="post" action="/new"><input name="name" type="text"><input name="source" type="text"><input type="submit"></form>';
-      this.$el.html(form);
+      var feedName = '<input id="feed-name" type="text" name="name">';
+      var feedSource = '<input id="feed-source" type="text" name="source">';
+      var createFeed = '<button id="create-feed">Create Feed</button>'
+      this.$el.html(feedName + feedSource + createFeed);
       return this;
+    },
+    events: {
+      'click #create-feed': 'createFeed'
+    },
+    createFeed: function() {
+      FeedReader.feeds.create({ name: $('#feed-name').val(), source: $('#feed-source').val() });
+      FeedReader.router.navigate('', {trigger: true});
     }
   });
 
