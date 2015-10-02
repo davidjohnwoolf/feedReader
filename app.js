@@ -43,12 +43,10 @@ app.post('/feeds', function(req, res) {
 
   feed.save(function(err) {
     if (err) return res.send(err);
-
-    res.redirect('/');
   });
 });
 
-app.put('/:id/edit', function(req, res) {
+app.put('/feeds/:id', function(req, res) {
   Feed.findById(req.params.id, function(err, feed) {
     if (err) return res.send(err);
 
@@ -58,19 +56,17 @@ app.put('/:id/edit', function(req, res) {
 
     feed.save(function(err) {
       if (err) return res.send(err);
-
-      res.redirect('/');
     });
   });
 });
 
-app.delete('/:id', function(req, res) {
-  Feed.remove({ _id: req.params.id }, function(err, feed) {
-    if (err) return res.send(err);
-
-    res.redirect('/');
-  });
-});
+// app.delete('/:id', function(req, res) {
+//   Feed.remove({ _id: req.params.id }, function(err, feed) {
+//     if (err) return res.send(err);
+//
+//     res.redirect('/');
+//   });
+// });
 
 // error handling
 

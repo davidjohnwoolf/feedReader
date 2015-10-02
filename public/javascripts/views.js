@@ -28,16 +28,28 @@ var FeedReaderViews = (function() {
     },
     createFeed: function() {
       FeedReader.feeds.create({ name: $('#feed-name').val(), source: $('#feed-source').val() });
-      FeedReader.router.navigate('', {trigger: true});
+      FeedReader.router.navigate('', { trigger: true });
     }
   });
 
   var EditFeed = Backbone.View.extend({
     id: 'edit-feed',
     render: function() {
-      var form = '<form method="post" action="/' + this.model.get('_id') + '/edit"><input type="hidden" name="_method" value="PUT" type="text"><input name="name" id="edit-name" type="text"><input name="source" id="edit-source" type="text"><input type="submit"></form>';
-      this.$el.html(form);
+      var editFeedName = '<input id="edit-feed-name" type="text" name="name"value="' + this.model.get('name') + '">';
+      var editFeedSource = '<input id="edit-feed-source" type="text" name="source" value="' + this.model.get('source') + '">';
+      var updateFeed = '<button id="update-feed">Update Feed</button>'
+      this.$el.html(editFeedName + editFeedSource + updateFeed);
       return this;
+    },
+    events: {
+      'click #update-feed': 'updateFeed'
+    },
+    updateFeed: function() {
+      this.model.set('name', $('#edit-feed-name').val());
+      this.model.set('source', $('#edit-feed-source').val());
+      console.log(this.model);
+      this.model.save();
+      FeedReader.router.navigate('', { trigger: true });
     }
   });
 
