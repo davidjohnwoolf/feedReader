@@ -43,6 +43,9 @@ app.post('/feeds', function(req, res) {
 
   feed.save(function(err) {
     if (err) return res.send(err);
+
+    // Is this redirect doing anything?
+    res.redirect('/');
   });
 });
 
@@ -56,6 +59,9 @@ app.put('/feeds/:id', function(req, res) {
 
     feed.save(function(err) {
       if (err) return res.send(err);
+
+      // Is this redirect doing anything?
+      res.redirect('/');
     });
   });
 });
@@ -63,6 +69,9 @@ app.put('/feeds/:id', function(req, res) {
 app.delete('/feeds/:id', function(req, res) {
   Feed.remove({ _id: req.params.id }, function(err, feed) {
     if (err) return res.send(err);
+
+    // Is this redirect doing anything?
+    res.redirect('/');
   });
 });
 
