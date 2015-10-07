@@ -38,7 +38,7 @@ app.get('/feeds', function(req, res) {
 app.post('/feeds', function(req, res) {
   var feed = new Feed({
     name: req.body.name,
-    source: req.body.source,
+    source: req.body.source
   });
 
   feed.save(function(err) {
