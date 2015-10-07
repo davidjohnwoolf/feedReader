@@ -20,7 +20,18 @@ var FeedReaderRouter = (function() {
     show: function(id) {
       var feed = FeedReader.feeds.get(id);
       var feedView = new FeedReader.Views.Feed({ model: feed });
-      $('#app').html(feedView.render().$el);
+      $.ajax({
+        url: '/fb/' + id
+      }).done(function( data ) {
+        var feedData = data;
+        var feedData = JSON.parse(feedData);
+        var feedContents = '';
+        for (var i = 0; i < feedData.feed.data.length; i++) {
+          feedContents += '<h4>' + feedData.feed.data[i].message + '</h4>'
+        }
+        $('#app').html(feedView.render().$el);
+        $('#app').append(feedContents);
+      });
     },
     edit: function(id) {
       var feed = FeedReader.feeds.get(id);
