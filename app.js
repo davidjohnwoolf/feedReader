@@ -5,6 +5,7 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var methodOverride = require('method-override');
+var request = require('request');
 var Feed = require('./models/feed');
 
 var app = express();
@@ -65,6 +66,27 @@ app.delete('/feeds/:id', function(req, res) {
     if (err) return res.send(err);
   });
 });
+
+app.get('/fb/:id', function(req, res) {
+  Feed.findById(req.params.id, function(err, feed) {
+    if (err) return res.send(err);
+
+    request('https://graph.facebook.com/oauth/access_token?client_id=' + process.env.FB_ID + '&client_secret=' + process.env.FB_SECRET + '&grant_type=client_credentials', function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        var accessToken = body // Show the HTML for the Google homepage.
+        request('https://graph.facebook.com/' + feed.source + '?fields=feed&' + accessToken, function (error, response, body) {
+          if (error) res.send(error);
+
+          if (!error && response.statusCode == 200) {
+            res.send(body);
+          }
+        });
+      }
+    });
+  });
+
+});
+
 
 // error handling
 
