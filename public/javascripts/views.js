@@ -41,7 +41,8 @@ var FeedReaderViews = (function() {
       'click #create-feed': 'createFeed'
     },
     createFeed: function() {
-      FeedReader.feeds.create({ name: $('#feed-name').val(), source: $('#feed-source').val() });
+      var feed = FeedReader.feeds.create({ name: $('#feed-name').val(), source: $('#feed-source').val() });
+      this.remove();
       FeedReader.router.navigate('', { trigger: true });
     }
   });
@@ -62,6 +63,7 @@ var FeedReaderViews = (function() {
       this.model.set('name', $('#edit-feed-name').val());
       this.model.set('source', $('#edit-feed-source').val());
       this.model.save();
+      this.remove();
       FeedReader.router.navigate('', { trigger: true });
     }
   });
@@ -78,8 +80,8 @@ var FeedReaderViews = (function() {
       return this;
     },
     initialize: function() {
-      this.listenTo(this.collection, 'update', this.render);
-      this.listenTo(this.collection, 'update', this.collection.initialize());
+      this.collection.fetch(); // find a way to add this to initialize
+      this.listenTo(this.collection, 'sync', this.render);
     }
   });
 

@@ -8,10 +8,7 @@ var FeedReaderModels = (function() {
 
   var Feeds = Backbone.Collection.extend({
     model: Feed,
-    url: '/feeds',
-    initialize: function() {
-      this.fetch();
-    }
+    url: '/feeds'
   });
 
   return {
